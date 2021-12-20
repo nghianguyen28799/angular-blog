@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="header">
+    <h2>Top Heading</h2>
+    <input type="text" class="form-control" />
+  </div>
+  <div class="row">
+    <div
+      *ngFor="let d of topheadingDisplay"
+      class="col-lg-3"
+      style="margin-top: 10px"
+    >
+      <div class="card" style="width: 100%">
+        <img src="{{ d.urlToImage }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ d.title }}</h5>
+          <p class="card-text">
+            {{ d.content }}
+          </p>
+          <a href="{{ d.url }}" target="_blank" class="btn btn-primary"
+            >Read more</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
