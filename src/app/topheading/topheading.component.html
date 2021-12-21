@@ -1,11 +1,20 @@
 <div class="container-fluid">
   <div class="header">
-    <h2>Top Heading</h2>
+    <div class="row" style="margin-bottom: 10px">
+      <div class="col-lg-6">
+        <h2>Top Heading</h2>
+      </div>
+      <div class="col-lg-6" style="display: flex; justify-content: flex-end">
+        <button type="button" class="btn btn-primary" (click)="open(addData)">
+          Add
+        </button>
+      </div>
+    </div>
     <input type="text" class="form-control" />
   </div>
   <div class="row">
     <div
-      *ngFor="let d of topheadingDisplay"
+      *ngFor="let d of topheadingDisplay | async"
       class="col-lg-3"
       style="margin-top: 10px"
     >
@@ -19,8 +28,44 @@
           <a href="{{ d.url }}" target="_blank" class="btn btn-primary"
             >Read more</a
           >
+          <button type="button" (click)="onDelArticle(d.title)" class="btn btn-secondary">Delete</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #addData let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Blog!</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+      <label for="TextInput" class="form-label">ID</label>
+      <input type="text" class="form-control" formControlName="id" />
+
+      <label for="TextInput" class="form-label">Title</label>
+      <input type="text" class="form-control" formControlName="title" />
+
+      <label for="TextInput" class="form-label">Content</label>
+      <input type="text" class="form-control" formControlName="content" />
+    </div>
+    <div class="modal-footer">
+      <button
+        type="submit"
+        class="btn btn-outline-dark"
+        (click)="c('Save click')"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</ng-template>

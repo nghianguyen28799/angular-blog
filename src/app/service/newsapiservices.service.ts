@@ -9,7 +9,7 @@ export class NewsapiservicesService {
   constructor(private _http: HttpClient) {}
 
   newsApiUrl =
-    'https://newsapi.org/v2/everything?q=tesla&from=2021-11-20&sortBy=publishedAt&apiKey=da71357a6025464584c702f46ae38283';
+    'https://newsapi.org/v2/everything?q=tesla&from=2021-11-21&sortBy=publishedAt&apiKey=da71357a6025464584c702f46ae38283';
 
   techNewsApiUrl =
     'https://newsapi.org/v2/top-headlines?category=technology&apiKey=da71357a6025464584c702f46ae38283';

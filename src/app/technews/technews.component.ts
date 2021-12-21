@@ -31,7 +31,6 @@ export class TechnewsComponent implements OnInit {
     this._service.techNews(query).subscribe((result) => {
       this.techNewsDisplay = result;
       this.loading = false;
-      console.log(query);
     });
   }
 

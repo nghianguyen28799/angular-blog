@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewsapiservicesService } from './service/newsapiservices.service';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { technewsReducer } from './state/technews.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,18 +24,11 @@ import { reducers, metaReducers } from './reducers';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // for HttpClient use:
     LoadingBarHttpClientModule,
-
-    // for Router use:
     LoadingBarRouterModule,
-
-    // for Core use:
     LoadingBarModule,
     FormsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
+    StoreModule.forRoot({ articles: technewsReducer })
   ],
   providers: [
     NewsapiservicesService,
