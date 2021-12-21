@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +21,17 @@ export class NewsapiservicesService {
     return this._http.get(this.newsApiUrl);
   }
 
-  techNews(): Observable<any> {
-    return this, this._http.get(this.techNewsApiUrl);
+  techNews(query: string): Observable<any> {
+    return this._http.get(this.techNewsApiUrl).pipe(
+      map((item: any) =>
+        item.articles.filter((d: any) => {
+          if (!query) return true;
+          else {
+            return d.title.toLowerCase().startsWith(query.toLowerCase());
+          }
+        })
+      )
+    );
   }
 
   bussinessNews(): Observable<any> {

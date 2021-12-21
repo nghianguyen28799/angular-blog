@@ -14,7 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsapiservicesService } from './service/newsapiservices.service';
-// import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,8 +32,10 @@ import { NewsapiservicesService } from './service/newsapiservices.service';
 
     // for Core use:
     LoadingBarModule,
-    // FormControl,
-    // ReactiveFormsModule,
+    FormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
   ],
   providers: [
     NewsapiservicesService,

@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="header">
     <h2>Technology News</h2>
-    <input type="text" class="form-control" />
+    <input type="text" class="form-control" (keyup)="onSearch($event)" />
   </div>
-  <div class="row">
+  <div class="row" *ngIf="!loading; else isLoading">
     <div
       *ngFor="let d of techNewsDisplay"
       class="col-lg-3"
@@ -22,5 +22,13 @@
         </div>
       </div>
     </div>
+    <div *ngIf="techNewsDisplay.length === 0" class="loading">
+      <h3>No data...</h3>
+    </div>
   </div>
+  <ng-template #isLoading>
+    <div class="loading">
+      <h3>Loading ...</h3>
+    </div>
+  </ng-template>
 </div>
